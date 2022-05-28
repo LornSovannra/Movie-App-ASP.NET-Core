@@ -1,0 +1,62 @@
+﻿@model Movie
+@{
+    ViewData["Title"] = "Delete | Movie";
+}
+
+<div style="max-width: 700px; margin: 20px auto; justify-content: center; align-items: center;">
+    <form method="POST" asp-controller="Home" asp-action="RemoveMovie" asp-route-id="@Model.MovieId">
+        <div class="card">
+            <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+                <h5>Delete Movie</h5>
+                <a class="btn btn-warning" asp-controller="Home" asp-action="Index">Back</a>
+            </div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <label asp-for="Title"></label>
+                    <input disabled asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger mt-1"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Duration"></label>
+                    <input disabled asp-for="Duration" class="form-control" />
+                    <span asp-validation-for="Duration" class="text-danger mt-1"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="SubTitle" class="form-label"></label>
+                    <select disabled asp-for="SubTitle" asp-items="@((List<SelectListItem>)ViewBag.SubTitles)" class="form-control">
+                        <option>Please select movie subtitle</option>
+                    </select>
+                    <span asp-validation-for="SubTitle" class="text-danger mt-1"></span>
+                  </div>
+                  <div class="mb-3">
+                    <label asp-for="ReleaseDate" class="form-label"></label>
+                    <input disabled asp-for="ReleaseDate"  class="form-control">
+                    <span asp-validation-for="ReleaseDate" class="text-danger mt-1"></span>
+                  </div>
+                  <div class="mb-3">
+                    <label asp-for="Language" class="form-label"></label>
+                    <select disabled asp-for="Language" asp-items="@((List<SelectListItem>)ViewBag.Languages)" class="form-control">
+                        <option>Please select language</option>
+                    </select>
+                    <span asp-validation-for="Language" class="text-danger mt-1"></span>
+                  </div>
+                  <div class="mb-3">
+                    <label asp-for="MovieType" class="form-label"></label>
+                    <select disabled asp-for="MovieType" asp-items="@((List<SelectListItem>)ViewBag.MovieTypes)" class="form-control">
+                        <option>Please select movie type</option>
+                    </select>
+                    <span asp-validation-for="MovieType" class="text-danger mt-1"></span>
+                  </div>
+            </div>
+            <button type="submit" class="btn btn-danger" id="show_confirm">Delete</button>
+        </div>
+    </form>
+</div>
+
+<script type="text/javascript">
+    $('#show_confirm').click(function(e) {
+        if(!confirm('Are you sure you want to delete this?')) {
+            e.preventDefault();
+        }
+    });
+</script>
